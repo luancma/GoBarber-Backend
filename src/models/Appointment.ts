@@ -12,6 +12,9 @@ class Appointment {
   id: string;
 
   @Column()
+  provider_id: string;
+
+  @Column()
   provider: string;
 
   @Column('timestamp with time zone')
