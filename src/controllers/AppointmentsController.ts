@@ -3,7 +3,6 @@ import { parseISO } from 'date-fns';
 import { Request, Response } from 'express';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 import CreateAppointmentService from '../services/CreateAppointmentService';
-import Appointment from '../models/Appointment';
 
 class AppointmentsController {
   async index(request: Request, response: Response): Promise<Response> {
