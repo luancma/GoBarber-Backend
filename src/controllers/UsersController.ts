@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import CreateUserService from '../services/CreateUserService';
 
-class AppointmentsController {
+class UsersController {
   async store(request: Request, response: Response): Promise<Response> {
     try {
       const { name, email, password } = request.body;
@@ -20,4 +20,4 @@ class AppointmentsController {
     }
   }
 }
-export default new AppointmentsController();
+export default new UsersController();
