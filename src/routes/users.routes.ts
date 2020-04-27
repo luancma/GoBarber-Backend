@@ -1,8 +1,19 @@
 import { Router } from 'express';
+import multer from 'multer';
+
+import uploadConfig from '../config/upload';
+
 import UsersController from '../controllers/UsersController';
+import validateAutheticate from '../middlewares/validateAutheticate';
 
-const appointmentsRouter = Router();
+const usersRouter = Router();
+const upload = multer(uploadConfig);
 
-appointmentsRouter.post('/create', UsersController.store);
+usersRouter.patch(
+  '/avatar',
+  validateAutheticate,
+  upload.single('avatar'),
+  UsersController.update,
+);
 
-export default appointmentsRouter;
+export default usersRouter;
