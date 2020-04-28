@@ -3,6 +3,7 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import User from '../models/Users';
 import auth from '../config/auth';
+import AppError from '../errors/AppError';
 
 interface Request {
   email: string;
@@ -25,13 +26,13 @@ class AuthenticateUserService {
     });
 
     if (!user) {
-      throw new Error(`Email or password don't match.`);
+      throw new AppError(`Email or password don't match.`, 401);
     }
 
     const validatePassword = await compare(password, user.password);
 
     if (!validatePassword) {
-      throw new Error(`Email or password don't match.`);
+      throw new AppError(`Email or password don't match.`, 401);
     }
 
     const { secret, expiresIn } = auth.jwt;
